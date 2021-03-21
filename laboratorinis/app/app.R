@@ -3,7 +3,7 @@ library(tidyverse)
 library(shinythemes)
 ui <- fluidPage( theme = shinytheme("darkly"),
                  navbarPage(
-                   ("2020 m. imoniu SoDra duomenys"),
+                   ("Medienos, statybiniu medziagu ir sanitariniu irenginiu didmenine prekyba"),
                    
                    
                    
@@ -38,7 +38,7 @@ ui <- fluidPage( theme = shinytheme("darkly"),
 server <- function(input, output, session) {
   data <- read_csv("https://raw.githubusercontent.com/Marius-Arlauskas/KTU-duomenu-vizualizacija/main/laboratorinis/data/lab_sodra.csv")
   data <- data %>% mutate("men" = as.integer(substr(month, 5, 6)))
-  data<-data %>% filter(ecoActCode==467300)
+  data <- data %>% filter(ecoActCode==467300)
   
   
   updateSelectizeInput(session, "imones_pav", choices = data$name, server = TRUE)
